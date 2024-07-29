@@ -1,0 +1,62 @@
+class Student:
+    def __init__(self, name, upi, gpa):
+        self.name = name
+        self.upi = upi
+        self.gpa = gpa
+
+    def __str__(self):
+        return (f"Student(name={self.name}, UPI={self.upi}, GPA={self.gpa}) - user-friendly string representation of "
+                f"the object")
+
+    def __repr__(self):
+        return f"Student('{self.name}', {self.upi}, {self.gpa}) - machine-readable representation of the object"
+
+    # def __eq__(self, other):
+    #     if not isinstance(other, Student):
+    #         return NotImplemented
+    #     return self.name == other.name
+
+    def __lt__(self, other):
+        return self.gpa < other.gpa
+
+    # def __hash__(self):
+    #     return hash(self.upi)
+
+    @property
+    def student_info(self):
+        return self.name
+
+    @student_info.setter
+    def student_info(self, name):
+        self.name = name
+
+
+student = Student("Brenda", "bsan361", 7.5)
+print(student.student_info)
+student.student_info = "Elisa"
+print(student.student_info)
+
+# Exercise 1: run the code as is, see what it prints
+# Exercise 2: comment the implementation of __str__ see what it prints
+# Exercise 3: comment the implementation of __str__ and __repr__ see what it prints
+print(student)
+print(repr(student))
+
+# Exercise 4: run the code as is, see what it prints
+# Exercise 5: uncomment override of __eq__ reflect on the difference
+studentA = Student("Elisa", "bsan361", 7.5)
+studentB = student
+print(student == studentA)
+print(student == studentB)
+
+# Exercise 6:comment the implementation of __lt__ reflect on the output
+studentC = Student("Elisa", "bsan361", 4)
+print(studentC < studentA)
+
+# Exercise 7: uncomment the implementation of __hash__ reflect on the new behaviour
+# Exercise 8: customize the hashing behavior based on the name attribute reflect on the output
+# Exercise 9: customize the hashing behavior based on the gpa attribute reflect on the output confirm your hypotheses
+print("The hash of student is: %d" % hash(student))
+print("The hash of student A is: %d" % hash(studentA))
+print("The hash of student B is: %d" % hash(studentB))
+print("The hash of student C is: %d" % hash(studentC))
